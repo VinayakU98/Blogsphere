@@ -1,0 +1,31 @@
+.my-1{
+    background-color: rgb(150, 156, 155);
+    justify-content: center; text-align: center;
+    color:rgb(0, 0, 0);
+    border-radius: 5px;
+    border: 3px solid black;
+    background-image: linear-gradient(rgb(219, 186, 177) ,rgb(237, 224, 160));
+}
+.my-2{
+    background-color: black;
+    color: white;
+}
+.my-3{
+    padding: 0px;
+    margin: 5px
+}
+.wp-share {
+	display: block;
+	background: #25d366;
+	max-width: 200px;
+	padding: 8px 12px;
+	color: #fff;
+	font-weight: 700;
+	font-size: 17px;
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	margin: auto;
+	border-radius: 10px;
+	transition: all .3s;
+}

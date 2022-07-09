@@ -1,0 +1,13 @@
+{%extends "base.html"%}
+{% block title %}Login{% endblock title %}
+{% block content %}
+<h1>login</h1>
+<table>
+<form class="form-control"method="post">
+    {% csrf_token %}
+    {{form.as_table}}
+    <button class="btn btn-success"> submit</button>
+</form>
+</table>
+<a  class="btn btn-warning" href="{%url 'Home'%}">back</a>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+    {% block content %}
+    <form method="post" action="/contactus/">
+    {% csrf_token %} 
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="enter your name">
+
+      </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" class="form-control"  name="email" id="email" aria-describedby="emailHelp">
+          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+          <label for="phone" class="form-label">Phone no</label>
+          <input type="number" class="form-control" id="phone" name="phone">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+    {%endblock%}
+</body>
+</html>

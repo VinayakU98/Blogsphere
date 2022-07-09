@@ -1,0 +1,25 @@
+{%extends "base.html"%}
+{% block title %}Add Category{% endblock title %}
+{% block content %}
+<h1>Add Category</h1>
+<table>
+    {% if user.is_authenticated %}
+<form class="form-control"  method="post">
+    {% csrf_token %}
+    {{form.as_table}}
+    <button class="btn btn-primary" style="top:65%;
+    left:20;
+    
+    width:100px;
+    height:40px;
+    position: absolute;" type="submit">Add</button>
+</form>
+   {%endif%}
+</table>
+<a  class="btn btn-warning" style="top:75%;
+left:20;
+
+width:100px;
+height:40px;
+position: absolute;" href="{%url 'Home'%}">back</a>
+{% endblock %}

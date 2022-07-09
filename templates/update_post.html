@@ -1,0 +1,15 @@
+{%extends "base.html"%}
+{% block title %}update Post{% endblock title %}
+{% block content %}
+<h1>updatePost</h1>
+{% if user.is_authenticated %}
+<table>
+<form class="form-control" method="post">
+    {% csrf_token %}
+    {{form.as_table}}
+    <button class="btn btn-primary" type="submit">Post</button>
+</form>
+</table>
+{%endif%}
+<a href="{%url 'Home'%}">back</a>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}{{post.title}}{% endblock%}
+{% block content %}
+<script src="https://apps.elfsight.com/p/platform.js" defer></script>
+
+<div class="container my-1" style=" white-space: pre-wrap;text-align: center;">
+    <h1 style="text-decoration:underline;">{{post.title}}</h1>
+    <strong>
+        by : {{post.author}}
+    </strong>
+    <br>
+    <p>{{post.body}}</p>
+    <br>
+    <small>Date Posted : {{post.date_posted}}</small>
+    {% if user.is_authenticated %}
+    
+    <form action="{% url 'like_post' post.pk%}" method="post">
+        {% csrf_token %}
+        <button type="submit" name="post_id" value="{{post.id}}",class="btn btn-primary">Like &#x1f44d;</button>
+    </form>
+    {% endif %}
+    Likes:{{total_likes}}
+    <div class="elfsight-app-bed64ab6-85ba-447b-a296-405c8d2ed756"></div>
+</div>
+{%endblock%}
