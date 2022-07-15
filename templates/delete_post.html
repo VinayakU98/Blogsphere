@@ -2,18 +2,22 @@
 {% block title %}delete Post{% endblock title %}
 {% block content %}
 {% if user.is_authenticated %}
-<h1>Delete Post</h1>
+<h3 class="d-flex justify-content-center ">Delete Post</h3><br>
 <br>
 <br>
+<h3 class="d-flex justify-content-center ">delete : {{post.title}}</h3>
 <br>
-<h3>delete : {{post.title}}</h3>
+<br>
 <table>
-<form class="form-control" method="post">
+<form class="form-control " method="post">
     {% csrf_token %}
-
-    <button class="btn btn-danger" type="submit">Delete</button>
+    <div class="d-flex justify-content-center ">
+        <button class="btn btn-danger "  type="submit">Delete</button>
+    </div>
 </form>
 </table>
-<a href="{%url 'Home'%}">back</a>
-{%endif%}
+<br><br>
+<div  class="d-flex justify-content-start container">
+    <a  class="btn btn-dark" style="position: relative;" href="{%url 'Home'%}">Back</a>
+    </div>{%endif%}
 {% endblock %}

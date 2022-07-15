@@ -1,15 +1,21 @@
 {%extends "base.html"%}
 {% block title %}update Post{% endblock title %}
 {% block content %}
-<h1>updatePost</h1>
-{% if user.is_authenticated %}
+<h3 class="d-flex justify-content-center ">Update Your Post</h3>
 <table>
+    {% if user.is_authenticated %}
 <form class="form-control" method="post">
     {% csrf_token %}
-    {{form.as_table}}
-    <button class="btn btn-primary" type="submit">Post</button>
-</form>
+    <div class="container " style=" text-align: center; padding: 20px; border:5px solid rgb(0, 0, 0) ; border-radius: 15px; background-color: white;">
+        {{form.as_p}}
+        <div class="d-flex justify-content-center">
+            <button class="btn btn-outline-dark" style="position: relative; margin-bottom:20px ;" type="submit">Post</button>
+         </div>
+    </div>
+ </form><br><br>    
+ {%endif%}
 </table>
-{%endif%}
-<a href="{%url 'Home'%}">back</a>
+<div  class="d-flex justify-content-start container">
+    <a  class="btn btn-dark" style="position: relative;" href="{%url 'Home'%}">Back</a>
+    </div>
 {% endblock %}

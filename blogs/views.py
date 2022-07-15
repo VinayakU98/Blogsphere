@@ -5,24 +5,17 @@ import re
 from tokenize import Number
 from unicodedata import category, name
 from urllib import request
-from blogs.models import Contactus,Post,Category
+from blogs.models import Post,Category
 from django.shortcuts import render ,HttpResponse,get_object_or_404,HttpResponseRedirect
 from django.views.generic import DetailView,ListView,CreateView,UpdateView,DeleteView
 from .forms import PostForm
 from django.urls import reverse_lazy,reverse
-# Create your views here.
 #def index(request):
 #   return render(request,'index.html')
-def contactus(request):
+def AddComment(request):
        if request.method=="POST":
-              name=request.POST.get('name')
-              email=request.POST.get('email')
-              phone=request.POST.get('phone')
-              contact = Contactus(name=name,email=email,phone=phone)
-              contact.save()
-          
-              
-       return render(request,'contactus.html')
+              comment=request.POST.get('comment')
+
 class HomeView(ListView):
        model=Post
        template_name='index.html'
@@ -33,13 +26,20 @@ class ArticleDetailView(DetailView):
        def get_context_data(self, **kwargs):
               context=super(ArticleDetailView,self).get_context_data()
               stuff=get_object_or_404(Post,id=self.kwargs['pk'])
+              liked=False
+              if stuff.likes.filter(id=self.request.user.id).exists():
+                     liked=True
               total_likes=stuff.total_likes()
               context["total_likes"]=total_likes
+              context["liked"]=liked
               return context
 class ArticleCreateView(CreateView):
        model=Post
        form_class=PostForm
        template_name='add_post.html'
+       def form_valid(self, form):
+              form.instance.author = self.request.user
+              return super().form_valid(form)      
 class ArticleUpdateView(UpdateView):
        model=Post
       # form_class=PostForm
@@ -59,5 +59,11 @@ def Categoryview(request,cats):
        return render(request,'categories.html',{'cats':cats,'category_posts':category_posts})
 def LikeView(request,pk):
        post=get_object_or_404(Post,id=request.POST.get('post_id'))
-       post.likes.add(request.user)
+       liked=False
+       if post.likes.filter(id=request.user.id).exists():
+              post.likes.remove(request.user)
+              liked=False
+       else:
+              post.likes.add(request.user)
+              liked=True
        return HttpResponseRedirect(reverse('indexDetail',args=[str(pk)]))

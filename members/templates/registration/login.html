@@ -1,13 +1,27 @@
 {%extends "base.html"%}
 {% block title %}Login{% endblock title %}
 {% block content %}
-<h1>login</h1>
+<h1 class="d-flex justify-content-center" >login</h1>
 <table>
-<form class="form-control"method="post">
+<form method="post">
     {% csrf_token %}
-    {{form.as_table}}
-    <button class="btn btn-success"> submit</button>
+    <div class="container" style="border:5px solid rgb(0, 0, 0) ; border-radius: 15px; background-color: white;">
+        <ul style="list-style-type:none; margin-top: 20px;">
+            <li class="d-flex justify-content-center">USERNAME : {{form.username}}</li>
+            <br>
+            <li class="d-flex justify-content-center">PASSWORD : {{form.password}}</li>
+            <li>
+                <div class="d-flex justify-content-center" style="padding-top:20px;">
+                    <button class="btn btn-outline-dark" style="position: relative;" type="submit">Login</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+  
 </form>
 </table>
-<a  class="btn btn-warning" href="{%url 'Home'%}">back</a>
+<br>
+<div  class="d-flex justify-content-start container">
+    <a  class="btn btn-dark" style="position: relative;" href="{%url 'Home'%}">Back</a>
+    </div>
 {% endblock %}
