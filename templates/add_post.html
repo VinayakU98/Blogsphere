@@ -1,7 +1,9 @@
 {%extends "base.html"%}
 {% block title %}Add Post{% endblock title %}
 {% block content %}
-<h3 class="d-flex justify-content-center "> Add Your Post Here</h3>
+<h1
+style="text-align: center; font-family: 'Open Sans', sans-serif; font-size: 48px; font-weight: bold; color: rgb(174, 255, 229); text-transform: uppercase; letter-spacing: 4px;">
+ADD YOUR POST HERE</h1>
 <table>
     {% if user.is_authenticated %}
 <form class="form-control" action="/add_post/" method="post">

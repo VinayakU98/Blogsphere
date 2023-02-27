@@ -1,48 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/pain..css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  </head>
-  <body>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="stylesheet" type="text/css" href="/static/css/pain..css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
   {% include "base.html" %}
   {% block content %}
-  <ul  class =" container-fluid row my-4 p-3  " style=" justify-content: center; ">
-    {% for post in object_list %}
-   <li class="  my-1 col-lg-5 " style="list-style:none ;"><h3><a style="  color: black;" href="{% url 'indexDetail' post.pk%}"> <strong>{{post.title}}</strong></a></h3>
-    <strong>
-      <small>By: {{post.author}}</small>
-    </strong>
-    <br>
-    <a style="text-decoration:underline rgb(2, 87, 67); color:black" href="{%url 'category' post.category%}">{{post.category}}</a> <br><br>
+  <h1
+    style="text-align: center; font-family: 'Open Sans', sans-serif; font-size: 48px; font-weight: bold; color: rgb(174, 255, 229); text-transform: uppercase; letter-spacing: 4px;">
+    WELCOME TO BLOGOSPHERE</h1>
 
-    <p style=" white-space: pre-wrap; font-size: larger;">{{post.body | slice:":200 "}}<p/>
-      <a style="text-decoration:underline rgb(2, 87, 67); color:black" href="{% url 'indexDetail' post.pk%}"> <h6><strong>Read full</strong></h6></a><br>
-      {% if user.is_authenticated %}
-     <small> <a class="btn btn-dark "href="{% url 'update_post' post.pk %}"><i class="fa fa-edit"></i> edit</a>
-      <a class="btn btn-dark btn-sm" href="{% url 'delete_post' post.pk %}"><i class="fa fa-trash"></i> Delete</a><br><br>
-      <form action="{% url 'like_post' post.pk%}" method="post">
-        {% csrf_token %}
-        {% if liked %}
-        <button type="submit" name="post_id" value="{{post.id}}"class="btn btn-outline-dark"><i class="fa fa-thumbs-down" aria-hidden="true"></i>
-        </button>
-        {%else%}
-        <button type="submit" name="post_id" value="{{post.id}}"class="btn btn-outline-dark"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Like
-        </button>
-        {% endif %}
-    </form>
-    {% endif %}
-    </small>
-      <br><br>
-      {% endfor %}
-  </li>
+  <ul class=" container-fluid row my-4 p-3  " style=" justify-content: center; ">
+    {% for post in object_list %}
+    <li class="  my-1 col-5 " style="list-style:none ;background-color: #e0fbfc;">
+      <h3><a style="  color: black; text-decoration:none" href="{% url 'indexDetail' post.pk%}">
+          <h3 style="color: #333; font-weight: bold; font-family: 'Open Sans', sans-serif; text-transform: uppercase;">
+            {{post.title}}
+        </a></h3>
+      <h5>
+        <small>By: {{post.author}}</small>
+      </h5>
+      <a style="text-decoration:underline rgb(2, 87, 67); color:black"
+        href="{%url 'category' post.category%}">{{post.category}}</a>
+      <p
+        style="font-family: 'Roboto', sans-serif; font-size: 18px; line-height: 1.6; color: rgb(0, 0, 0); text-align: justify;">
+        {{post.body | slice:":200 "}}</p>
+        <a style="text-decoration:underline rgb(2, 87, 67); color:black" href="{% url 'indexDetail' post.pk%}">
+          <h5><strong>Read full</strong></h5>
+        </a><br>
+        {% if user.is_authenticated %}
+        <small> <a class="btn btn-dark " href="{% url 'update_post' post.pk %}"><i class="fa fa-edit"></i> edit</a>
+          <a class="btn btn-dark " href="{% url 'delete_post' post.pk %}"><i class="fa fa-trash"></i>
+            Delete</a><br><br>
+          <form action="{% url 'like_post' post.pk%}" method="post">
+            {% csrf_token %}
+            {% if liked %}
+            <button type="submit" name="post_id" value="{{post.id}}" class="btn btn-outline-dark"><i
+                class="fa fa-thumbs-down" aria-hidden="true"></i>
+            </button>
+            {%else%}
+            <button type="submit" name="post_id" value="{{post.id}}" class="btn btn-outline-dark"><i
+                class="fa fa-thumbs-up" aria-hidden="true"></i> Like
+            </button>
+            {% endif %}
+          </form>
+          {% endif %}
+        </small>
+        <br><br>
+        {% endfor %}
+    </li>
   </ul>
-  
+
   {% endblock %}
 </body>
+
 </html>

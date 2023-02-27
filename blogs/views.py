@@ -10,8 +10,22 @@ from django.shortcuts import render ,HttpResponse,get_object_or_404,HttpResponse
 from django.views.generic import DetailView,ListView,CreateView,UpdateView,DeleteView
 from .forms import PostForm
 from django.urls import reverse_lazy,reverse
+from django.core.exceptions import PermissionDenied
+
 #def index(request):
 #   return render(request,'index.html')
+class PostUpdateView(UpdateView):
+    model = Post
+    fields = ['title', 'content']
+
+    def dispatch(self, request, *args, **kwargs):
+        # get the post object being updated
+        post = self.get_object()
+        # check if the current user is the author of the post
+        if post.author != self.request.user:
+            # raise PermissionDenied exception if not authorized
+            raise PermissionDenied
+        return super().dispatch(request, *args, **kwargs)
 def AddComment(request):
        if request.method=="POST":
               comment=request.POST.get('comment')

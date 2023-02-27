@@ -1,10 +1,13 @@
 {%extends "base.html"%}
 {% block title %}Login{% endblock title %}
 {% block content %}
-<h1 class="d-flex justify-content-center" >login</h1>
+<h1
+style="text-align: center; font-family: 'Open Sans', sans-serif; font-size: 48px; font-weight: bold; color: rgb(174, 255, 229); text-transform: uppercase; letter-spacing: 4px;">
+LOGIN </h1>
 <table>
 <form method="post">
     {% csrf_token %}
+    <link rel="stylesheet" type="text/css" href="/static/css/pain..css">
     <div class="container" style="border:5px solid rgb(0, 0, 0) ; border-radius: 15px; background-color: white;">
         <ul style="list-style-type:none; margin-top: 20px;">
             <li class="d-flex justify-content-center">USERNAME : {{form.username}}</li>

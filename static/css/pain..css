@@ -3,9 +3,10 @@
     justify-content: center; text-align: center;
     color:rgb(0, 0, 0);
     border-radius: 15px;
-    border: 3px solid black;
+	border: 2px solid black;
 	margin-right: 20px;
 	margin-left: 20px;
+	box-shadow: 10px 10px 10px  rgb(13, 21, 30);
 }
 .my-2{
     background-color: black;
@@ -39,3 +40,16 @@ border-radius: 20px;
 	color: white;
 	border-radius: 20px;
 }
+.logo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 200px;
+	height: 55px;
+	border-radius: 50%;
+	background-color: rgb(174, 255, 229);
+	box-shadow: 0 0 50px 10px #1a1a1a;
+	position: relative;
+  }
+  
+  
