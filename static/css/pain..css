@@ -16,6 +16,16 @@
     padding: 0px;
     margin: 5px
 }
+.myy{
+    background-color: rgb(255, 255, 255);
+    justify-content: center; text-align: center;
+    color:rgb(0, 0, 0);
+    border-radius: 15px;
+	border: 2px solid black;
+	margin-right: 20px;
+	margin-left: 20px;
+	box-shadow: 10px 10px 10px  rgb(13, 21, 30);
+}
 .wp-share {
 	display: block;
 	background: #25d366;
@@ -51,5 +61,103 @@ border-radius: 20px;
 	box-shadow: 0 0 50px 10px #1a1a1a;
 	position: relative;
   }
+.category{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	margin: 20px;
+  }
+.category a{
+	text-decoration: none;
+	background-color: #e0fbfc;
+	border-radius: 20px;
+	padding: 10px 20px;
+	color: #333;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 18px;
+	margin: 10px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  }
+.category a:hover {
+	transform: translateY(-5px);
+	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+.glowlogo{
+	color: #000000;
+	transition: all 0.3s ease;
+	margin-inline-start: 20px;
+}
   
+.glowlogo:hover {
+	background-color: rgb(2, 87, 67);
+	color: white !important;
+	box-shadow: 0 0 10px rgb(2, 87, 67);
+}
+.glow{
+	border: 2px solid #aeffe5;
+	border-radius: 20%;
+	padding: 5px 10px;
+	text-decoration: none;
+	color: black;
+	transition: all 0.3s ease;
+	margin-inline-start: 20px;
+}
+  
+  .glow:hover {
+	background-color: rgb(2, 87, 67);
+	color: white;
+	box-shadow: 0 0 10px rgb(2, 87, 67);
+  }
+  .read-more {
+	display: inline-block;
+	position: relative;
+	font-size: 18px;
+	font-weight: bold;
+	padding: 10px 20px;
+	color: black;
+	background-color: #aeffe5;
+	border-radius: 20%;
+	border: 2px solid #aeffe5;
+	text-decoration: none;
+	overflow: hidden;
+	z-index: 1;
+	transition: all 0.3s ease;
+	margin-inline-start: 20px;
+  }
+  
+  .read-more:before {
+	content: '';
+	position: absolute;
+	top: -20px;
+	left: -20px;
+	width: 0;
+	height: 0;
+	border-radius: 50%;
+	background-color: #fff;
+	opacity: 0.5;
+	transition: all 0.5s ease-out;
+	z-index: -1;
+  }
+  
+  .read-more:hover:before {
+	width: 400px;
+	height: 400px;
+  }
+  
+  .read-more:hover {
+	background-color: rgb(2, 87, 67);
+	color: white;
+	box-shadow: 0 0 10px rgb(2, 87, 67);
+  }
+  
+
+
+
+
+
+
+
   

@@ -1,23 +1,34 @@
-{%extends "base.html"%}
+{% extends "base.html" %}
 {% block title %}delete Post{% endblock title %}
 {% block content %}
 {% if user.is_authenticated %}
-<h3 class="d-flex justify-content-center ">Delete Post</h3><br>
-<br>
-<br>
-<h3 class="d-flex justify-content-center ">delete : {{post.title}}</h3>
-<br>
-<br>
-<table>
-<form class="form-control " method="post">
-    {% csrf_token %}
-    <div class="d-flex justify-content-center ">
-        <button class="btn btn-danger "  type="submit">Delete</button>
+    <h1 style="text-align: center; font-family: 'Open Sans', sans-serif; font-size: 48px; font-weight: bold; color: #aeffe5; text-transform: uppercase; letter-spacing: 4px;">DELETE POST</h1>
+    <br>
+    <br>
+    {% if post.author != user %}
+        <div class="alert alert-danger" role="alert">
+            You are not authorized to delete this post.
+        </div>
+    {% else %}
+        <h1 style="text-align: center; font-family: 'Open Sans', sans-serif; font-size: 48px; font-weight: bold; color: #aeffe5; text-transform: uppercase; letter-spacing: 4px;">delete : {{post.title}}</h1>
+        <br>
+        <br>
+        <table>
+            <form class="form-control " method="post">
+                {% csrf_token %}
+                <div class="d-flex justify-content-center ">
+                    <button class="btn btn-danger "  type="submit">Delete</button>
+                </div>
+            </form>
+        </table>
+        <br><br>
+        <div  class="d-flex justify-content-start container">
+            <a  class="btn btn-dark" style="position: relative;" href="{%url 'Home'%}">Back</a>
+        </div>
+    {% endif %}
+{% else %}
+    <div class="alert alert-danger" role="alert">
+        You must be logged in to delete a post.
     </div>
-</form>
-</table>
-<br><br>
-<div  class="d-flex justify-content-start container">
-    <a  class="btn btn-dark" style="position: relative;" href="{%url 'Home'%}">Back</a>
-    </div>{%endif%}
+{% endif %}
 {% endblock %}

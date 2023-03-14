@@ -30,36 +30,48 @@
   <nav>
     <nav class=" navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand logo" style="color: black;  font-weight: bold; " href="{% url 'Home'%}">BLOGOSPHERE
-        </a>
+        <a class="navbar-brand logo glowlogo" style="font-weight: bold; color: black;" href="{% url 'Home'%}">BLOGOSPHERE</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarScroll">
           
-          <ul class="navbar-nav my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+          <ul class="navbar-nav mr-auto navbar-nav-scroll" style="--bs-scroll-height: 100px;">
             {% if user.is_authenticated %}
             <li class=" nav-item ">
-              <a class="nav-link" href="{%url 'add_post'%}">Add Post</a>
+              <a class="nav-link glow" href="{%url 'add_post'%}">Add Post</a>
             </li>
             <li class="nav-item my1">
-              <a class="nav-link" href="{%url 'logout'%}">logout</a>
+              <a class="nav-link glow" href="{%url 'logout'%}">logout</a>
             </li>
             <li class="nav-item my1">
-              <a class="nav-link" href="{%url 'add_category'%}">Add a category</a>
+              <a class="nav-link glow" href="{%url 'add_category'%}">Add a category</a>
+            </li>
+            <li class="nav-item my1">
+              <a class="nav-link glow" href="{%url 'filter'%}">Categories</a>
             </li>
             {%else%}
             <li class="nav-item my1">
-              <a class="nav-link" href="{%url 'register'%}">Register</a>
+              <a class="nav-link glow"style="color:white !important;" href="{%url 'register'%}">Register</a>
             </li>
             <li class="nav-item my1">
-              <a class="nav-link" href="{%url 'login'%}">login</a>
+              <a class="nav-link glow" style="color:white !important;" href="{%url 'login'%}">login</a>
+            </li>
+            <li class="nav-item my1">
+              <a class="nav-link glow" style="color:white !important;" href="{%url 'filter' %}">Categories</a>
             </li>
             {% endif %}
             
           </ul>
+          
+          
         
         </div>
+        <ul class="navbar-nav ml-auto justify-content-end">
+          <li class="nav-item my1">
+            <a class="nav-link glow" style="color:white !important;" href="#">Welcome {{ user.username }}</a>
+          </li>
+        </ul>
       </div>
     </nav>
   </nav>

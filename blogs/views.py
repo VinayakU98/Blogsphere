@@ -11,6 +11,11 @@ from django.views.generic import DetailView,ListView,CreateView,UpdateView,Delet
 from .forms import PostForm
 from django.urls import reverse_lazy,reverse
 from django.core.exceptions import PermissionDenied
+from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from .models import Post
 
 #def index(request):
 #   return render(request,'index.html')
@@ -69,8 +74,12 @@ class AddCategoryView(CreateView):
        success_url=reverse_lazy('Home')
        fields='__all__'
 def Categoryview(request,cats):
-       category_posts=Post.objects.all
-       return render(request,'categories.html',{'cats':cats,'category_posts':category_posts})
+       category_posts=Post.objects.filter(category=cats)
+       return render(request,'categories.html',{'cats':cats.title(),'category_posts':category_posts})
+def category_list(request):
+    categories = Category.objects.all()
+    return render(request, 'filter.html', {'categories': categories})
+
 def LikeView(request,pk):
        post=get_object_or_404(Post,id=request.POST.get('post_id'))
        liked=False
@@ -81,3 +90,13 @@ def LikeView(request,pk):
               post.likes.add(request.user)
               liked=True
        return HttpResponseRedirect(reverse('indexDetail',args=[str(pk)]))
+@login_required
+def delete_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if post.author != request.user:
+        # If the user is not the owner of the post, return a 403 Forbidden error
+        return HttpResponseForbidden()
+    if request.method == 'POST':
+        post.delete()
+        return HttpResponseRedirect(reverse('Home'))
+    return render(request, 'delete_post.html', {'post': post})

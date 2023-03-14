@@ -28,9 +28,16 @@
   {% endif %}
   Likes: {{total_likes}}
   <h3>Comments....</h3>
-  <div class="container my-1">
-    {{post.comments}}
+  <div>
+    {% for comment in post.comments.all %}
+      <div class="container myy">
+        <div>
+          <strong>{{ comment.name }}</strong> <br>{{ comment.body }}
+        </div>
+      </div>
+    {% endfor %}
   </div>
+  
   <form method="post">
     {% csrf_token %}
     <div class="container my-1">

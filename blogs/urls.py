@@ -1,4 +1,5 @@
 from urllib.parse import urlparse
+from django.views.generic import TemplateView
 from django.contrib import admin
 from django.urls import path ,include
 from blogs import views
@@ -12,5 +13,8 @@ urlpatterns = [
     path('add_category/',AddCategoryView.as_view(),name='add_category'),
     path('category/<str:cats>/',Categoryview,name='category'),
     path('like/<int:pk>',LikeView,name='like_post'),
+    path('category/<str:cats>/', Categoryview, name='category'),
+    path('categories/', views.category_list, name='filter'),
+
 
 ]
