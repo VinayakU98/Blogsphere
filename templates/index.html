@@ -21,7 +21,7 @@
 
   <ul class=" container-fluid row my-4 p-3  " style=" justify-content: center; ">
     {% for post in object_list.reverse %}
-    <li class="  my-1 col-5 " style="list-style:none ;background-color: #e0fbfc;">
+    <li class="  my-1 col-5 " style="list-style:none ;background-color: #e0fbfc; padding:30px">
       <h3><a style="  color: black; text-decoration:none" href="{% url 'indexDetail' post.pk%}">
           <h3 style="color: #333; font-weight: bold; font-family: 'Open Sans', sans-serif; text-transform: uppercase;">
             {{post.title}}
@@ -34,7 +34,7 @@
       <p
         style="font-family: 'Roboto', sans-serif; font-size: 18px; line-height: 1.6; color: rgb(0, 0, 0); text-align: justify;">
         {{post.body | slice:":200 "}}</p>
-        <a class="read-more" href="{% url 'indexDetail' post.pk%}">
+        <a class="bn30" href="{% url 'indexDetail' post.pk%}">
           <span>Read full</span>
         </a>
         <br>
